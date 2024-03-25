@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User API Documentation</title>
+  </head>
+  <body>
+    <h2>User API Endpoints Documentation</h2>
+
+    <h3>1. Register a new user</h3>
+    <ul>
+      <li><strong>Endpoint:</strong> <code>POST /api/register</code></li>
+      <li>
+        <strong>Request Body:</strong>
+        <code
+          >{ "email": "example@example.com", "password": "password123" }</code
+        >
+      </li>
+    </ul>
+
+    <h3>2. Login with existing credentials</h3>
+    <ul>
+      <li><strong>Endpoint:</strong> <code>POST /api/login</code></li>
+      <li>
+        <strong>Request Body:</strong>
+        <code
+          >{ "email": "example@example.com", "password": "password123" }</code
+        >
+      </li>
+      <li>
+        <strong>Response Body (on successful login):</strong>
+        <code>{ "token": "&lt;JWT_TOKEN&gt;" }</code>
+      </li>
+    </ul>
+
+    <h3>3. Logout (invalidate the JWT token)</h3>
+    <ul>
+      <li><strong>Endpoint:</strong> <code>POST /api/logout</code></li>
+      <li><strong>Request Body:</strong> None</li>
+      <li>
+        <strong>Note:</strong> The client should handle removing the token from
+        local storage or cookies.
+      </li>
+    </ul>
+
+    <h3>4. Get user profile (requires authentication)</h3>
+    <ul>
+      <li><strong>Endpoint:</strong> <code>GET /api/profile</code></li>
+      <li>
+        <strong>Request Headers:</strong>
+        <code>{ "Authorization": "Bearer &lt;JWT_TOKEN&gt;" }</code>
+      </li>
+      <li>
+        <strong>Response Body:</strong>
+        <code
+          >{ "user": { "_id": "&lt;USER_ID&gt;", "email": "example@example.com"
+          } }</code
+        >
+      </li>
+    </ul>
+
+    <h3>User Endpoints Documentation</h3>
+
+    <h4>Fetch All Users</h4>
+    <ul>
+      <li><strong>URL:</strong> <code>/api/users/</code></li>
+      <li><strong>Method:</strong> <code>GET</code></li>
+      <li><strong>Description:</strong> Fetches a list of all users.</li>
+      <li>
+        <strong>Response:</strong>
+        <ul>
+          <li><code>200 OK</code> on success</li>
+          <li>JSON array containing user objects</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Fetch User by ID</h4>
+    <ul>
+      <li><strong>URL:</strong> <code>/api/users/:id</code></li>
+      <li><strong>Method:</strong> <code>GET</code></li>
+      <li><strong>Description:</strong> Fetches a single user by their ID.</li>
+      <li>
+        <strong>URL Parameters:</strong> <code>id</code>: The ID of the user to
+        fetch.
+      </li>
+      <li>
+        <strong>Response:</strong>
+        <ul>
+          <li><code>200 OK</code> on success</li>
+          <li>JSON object representing the user</li>
+          <li>
+            <code>404 Not Found</code> if user with the specified ID is not
+            found
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Create New User</h4>
+    <ul>
+      <li><strong>URL:</strong> <code>/api/users/</code></li>
+      <li><strong>Method:</strong> <code>POST</code></li>
+      <li><strong>Description:</strong> Creates a new user.</li>
+      <li>
+        <strong>Request Body:</strong>
+        <ul>
+          <li><code>email</code>: The email of the new user.</li>
+          <li><code>password</code>: The password of the new user.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Response:</strong>
+        <ul>
+          <li><code>201 Created</code> on success</li>
+          <li>JSON object representing the newly created user</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Update User</h4>
+    <ul>
+      <li><strong>URL:</strong> <code>/api/users/:id</code></li>
+      <li><strong>Method:</strong> <code>PUT</code></li>
+      <li><strong>Description:</strong> Updates an existing user.</li>
+      <li>
+        <strong>URL Parameters:</strong> <code>id</code>: The ID of the user to
+        update.
+      </li>
+      <li>
+        <strong>Request Body:</strong>
+        <ul>
+          <li><code>email</code>: The updated email of the user.</li>
+          <li><code>password</code>: The updated password of the user.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Response:</strong>
+        <ul>
+          <li><code>200 OK</code> on success</li>
+          <li>JSON object representing the updated user</li>
+          <li>
+            <code>404 Not Found</code> if user with the specified ID is not
+            found
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Delete User</h4>
+    <ul>
+      <li><strong>URL:</strong> <code>/api/users/:id</code></li>
+      <li><strong>Method:</strong> <code>DELETE</code></li>
+      <li><strong>Description:</strong> Deletes an existing user.</li>
+      <li>
+        <strong>URL Parameters:</strong> <code>id</code>: The ID of the user to
+        delete.
+      </li>
+      <li>
+        <strong>Response:</strong>
+        <ul>
+          <li><code>200 OK</code> on success</li>
+          <li>
+            <code>404 Not Found</code> if user with the specified ID is not
+            found
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>
+      This documentation outlines how to interact with each endpoint, including
+      the URL, method, request parameters (if any), request body (if any), and
+      expected responses.
+    </p>
+
+    <p>
+      These endpoints should cover the basic functionalities of user
+      authentication (register, login, logout) and authorization (get user
+      profile).
+    </p>
+  </body>
+</html>
