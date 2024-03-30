@@ -2,6 +2,7 @@
   "name": "trippa",
   "version": "1.0.0",
   "description": "API for a tourism application",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "dev": "ts-node-dev app.ts",
