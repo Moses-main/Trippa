@@ -1,6 +1,6 @@
+"use strict";
 // // userController.js
 // const User = require("../models/User");
-
 // // Fetch all users
 // exports.getAllUsers = async (req, res) => {
 //   try {
@@ -11,7 +11,6 @@
 //     res.status(500).json({ message: "Server error" });
 //   }
 // };
-
 // // Fetch single user by ID
 // exports.getUserById = async (req, res) => {
 //   const userId = req.params.id;
@@ -26,7 +25,6 @@
 //     res.status(500).json({ message: "Server error" });
 //   }
 // };
-
 // // Create a new user
 // exports.createUser = async (req, res) => {
 //   const { email, password } = req.body;
@@ -42,7 +40,6 @@
 //     res.status(500).json({ message: "Server error" });
 //   }
 // };
-
 // // Update a user
 // exports.updateUser = async (req, res) => {
 //   const userId = req.params.id;
@@ -61,7 +58,6 @@
 //     res.status(500).json({ message: "Server error" });
 //   }
 // };
-
 // // Delete a user
 // exports.deleteUser = async (req, res) => {
 //   const userId = req.params.id;

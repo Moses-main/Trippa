@@ -44,7 +44,7 @@ class UserController {
 
       res.status(201).json({
         status: true,
-        message: "User created statusfully",
+        message: "User created successfully",
         data: user,
       });
     } catch (error) {
