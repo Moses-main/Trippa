@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "ts-node-dev app.ts",
-    "start": "tsc && nodemon dist/app.js",
+    "start": "tsc && node --experimental-modules dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "ts-node app.ts"
   },
