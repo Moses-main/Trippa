@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import handlebars from "handlebars";
 import fs from "fs";
 import path from "path";
