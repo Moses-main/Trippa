@@ -19,8 +19,8 @@ class UserController {
     async signUp(req, res, next) {
         try {
             const body = req.body;
-            if (!body.name || !body.email || !body.password) {
-                const err = app_error_1.default.badRequest(false, "Missing required fields: name, email, password");
+            if (!body.email || !body.password) {
+                const err = app_error_1.default.badRequest(false, "Missing required fields: email, password");
                 return res.status(err.statusCode).json({ error: err });
             }
             const userExists = await server_1.userService.getUserByEmail(body.email);
