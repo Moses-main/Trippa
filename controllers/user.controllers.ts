@@ -18,10 +18,10 @@ class UserController {
   async signUp(req: Request, res: Response, next: NextFunction) {
     try {
       const body: UserDocument = req.body;
-      if (!body.name || !body.email || !body.password) {
+      if (!body.email || !body.password) {
         const err = HandleError.badRequest(
           false,
-          "Missing required fields: name, email, password"
+          "Missing required fields: email, password"
         );
         return res.status(err.statusCode).json({ error: err });
       }

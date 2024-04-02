@@ -7,7 +7,8 @@ const userController: UserController = new UserController();
 
 router.get("/", userController.initialRoute);
 router.post("/register", userController.signUp);
-router.post("/login",userController.signIn)
+router.post("/login", userController.signIn);
+router.post("/forgor-password", userController.forgetPasswordRequest);
 
 // Wildcard route
 router.all("*", (req: Request, res: Response) => {
