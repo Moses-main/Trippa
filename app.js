@@ -18,7 +18,6 @@ app.use("/api/users", userRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 // Database connection
-// mongoose.connect("mongodb://localhost:27017/Trippa", {
 mongoose.connect(MONGO_URI, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
