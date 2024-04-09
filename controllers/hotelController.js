@@ -3,7 +3,7 @@ const Hotel = require("../models/Hotel");
 // Fetch all hotesl
 exports.getAllHotels = async (req, res) => {
   try {
-    const hotels = await Hotel.find();
+    const hotel = await Hotel.find();
     res.json(hotel);
   } catch (error) {
     console.error(error);
@@ -97,7 +97,7 @@ exports.deleteHotel = async (req, res) => {
     if (!hotel) {
       return res.status(404).json({ message: "Hotel not found" });
     }
-    await hotel.remove();
+    await hotel.deleteOne();
     res.json({ message: "Hotel deleted successfully" });
   } catch (error) {
     console.error(error);

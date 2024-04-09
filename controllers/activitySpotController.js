@@ -97,7 +97,7 @@ exports.deleteActivitySpot = async (req, res) => {
     if (!activitySpot) {
       return res.status(404).json({ message: "ActivitySpot not found" });
     }
-    await activitySpot.remove();
+    await activitySpot.deleteOne();
     res.json({ message: "ActivitySpot deleted successfully" });
   } catch (error) {
     console.error(error);

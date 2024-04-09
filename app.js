@@ -24,9 +24,10 @@ app.use("/api/act-spot", activitySpotRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
-// Database connection
+const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
 
-mongoose.connect(MONGO_URI, {
+// Database connection
+mongoose.connect(LOCAL_CONN, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
 });
