@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3500;
 
 const routes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const hotelRoutes = require("./routes/hotelRoutes");
+
 require("dotenv").config();
 
 app.use(express.json());
@@ -15,9 +17,11 @@ app.use(express.static(path.join(__dirname, "public")));
 // Mounting routes
 app.use("/api", routes);
 app.use("/api/users", userRoutes);
+app.use("/api/hotels", hotelRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 // Database connection
+
 mongoose.connect(MONGO_URI, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
@@ -27,9 +31,6 @@ const db = mongoose.connection;
 if (db) console.log("Database connection successful");
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-// app.get("/", (req, res) => {
-//   res.send("Welcome to Trippa");
-// });
 // Define route for the root endpoint
 app.get("/", (req, res) => {
   // Read the Markdown file
