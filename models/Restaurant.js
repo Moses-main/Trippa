@@ -6,7 +6,7 @@ const restaurantSchema = new mongoose.Schema({
   description: { type: "string", required: true },
   googleMap: { type: "string", required: true },
   dishes: { type: "string", required: true, default: ["continental", "local"] },
-  restaurantTypes: {
+  restaurantType: {
     type: "string",
     required: true,
     default: ["roof top", "bar", "cafes"],

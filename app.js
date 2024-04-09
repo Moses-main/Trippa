@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3500;
 const routes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const hotelRoutes = require("./routes/hotelRoutes");
+const restaurantRoutes = require("./routes/restuarantRoutes");
 
 require("dotenv").config();
 
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", routes);
 app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelRoutes);
+app.use("/api/restaurants", restaurantRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 // Database connection
