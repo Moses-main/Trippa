@@ -79,9 +79,9 @@ exports.updateHotel = async (req, res) => {
       (hotel.roomPrice = roomPrice),
       (hotel.priceRange = priceRange),
       (hotel.pictures = pictures),
-      (user.email = email);
+      //   (user.email = email);
 
-    await hotel.save();
+      await hotel.save();
     res.json(hotel);
   } catch (error) {
     console.error(error);

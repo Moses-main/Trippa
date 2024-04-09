@@ -82,9 +82,9 @@ exports.updateRestuarant = async (req, res) => {
       (restuarant.roomPrice = roomPrice),
       (restuarant.priceRange = priceRange),
       (restuarant.pictures = pictures),
-      (restuarant.email = email);
+      //   (restuarant.email = email);
 
-    await restuarant.save();
+      await restuarant.save();
     res.json(restuarant);
   } catch (error) {
     console.error(error);

@@ -9,6 +9,7 @@ const routes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const hotelRoutes = require("./routes/hotelRoutes");
 const restaurantRoutes = require("./routes/restuarantRoutes");
+const activitySpotRoutes = require("./routes/actSpotRoutes");
 
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", routes);
 app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelRoutes);
+app.use("/api/act-spot", activitySpotRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
