@@ -10,6 +10,7 @@ const userRoutes = require("./routes/userRoutes");
 const hotelRoutes = require("./routes/hotelRoutes");
 const restaurantRoutes = require("./routes/restuarantRoutes");
 const activitySpotRoutes = require("./routes/actSpotRoutes");
+const tripsRoutes = require("./routes/tripsRoutes");
 
 require("dotenv").config();
 
@@ -22,6 +23,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/act-spot", activitySpotRoutes);
 app.use("/api/restaurants", restaurantRoutes);
+app.use("/api/trips", tripsRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
