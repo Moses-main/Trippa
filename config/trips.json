@@ -1,0 +1,8 @@
+{
+  "name": "Abia Hotels",
+  "Address": "No. 12 Club Road",
+  "State": "Abia State",
+  "City": "Umuahia",
+  "Rate": 1,
+  "img": ["uk.img", "atlanta.img", "australia.img"]
+}

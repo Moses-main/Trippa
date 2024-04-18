@@ -1,0 +1,9 @@
+{
+  "Number": "Room1",
+  "Address": "No. 12 Club Road",
+  "Hotel Name": "Abia Hotels",
+  "State": "Abia State",
+  "City": "Umuahia",
+  "Rate": 1,
+  "img": ["bed.img", "table.img", "bathroom.img"]
+}

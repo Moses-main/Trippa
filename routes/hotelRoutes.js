@@ -1,7 +1,7 @@
 // routes.js
 const express = require("express");
 const router = express.Router();
-const hotelController = require("../controllers/hotelController");
+const hotelController = require("../controllers/Others/hotelController");
 
 // CRUD endpoints for the hotel
 router.get("/", hotelController.getAllHotels);
