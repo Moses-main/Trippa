@@ -1,18 +1,12 @@
 const fs = require("fs");
 const path = require("path");
-const Hotels = require("../models/Hotel");
-const Restaurants = require("../models/Restaurant");
-const ActivitiesSpot = require("../models/ActivitySpot");
-const User = require("../models/User");
-const tripData = require("../config/trips.json");
-const bodyParser = require("body-parser");
 
 // Write the logic to return the
 // data for the trips section
-exports.getAllRooms = (req, res) => {
+exports.allRestaurants = (req, res) => {
   // Read the json data
   fs.readFile(
-    path.join(__dirname, "..", "config", "trips.json"),
+    path.join(__dirname, "..", "excel_data", "RESTURANTS.json"),
     "utf8",
     (err, data) => {
       if (err) {
@@ -28,11 +22,11 @@ exports.getAllRooms = (req, res) => {
   );
 };
 
-// Write the logic to return data for a specific room
-// exports.getRoom = (req, res) => {
+// // Write the logic to return data for a specific room
+// exports.getTrip = (req, res) => {
 //   // Read the json data
 //   fs.readFile(
-//     path.join(__dirname, "..", "config", "rooms.json"),
+//     path.join(__dirname, "..", "config", "trips.json"),
 //     "utf8",
 //     (err, data) => {
 //       if (err) {
@@ -42,22 +36,22 @@ exports.getAllRooms = (req, res) => {
 //       }
 
 //       // Parse the JSON data
-//       const rooms = JSON.parse(data);
+//       const trips = JSON.parse(data);
 
 //       // Retrieve the criteria from the request
 //       const { criteria } = req.params;
 
 //       // Find the room based on the criteria
-//       //   const room = rooms.find((room) => room.criteria === criteria);
+//       const trip = trips.find((trip) => trip.criteria === criteria);
 
-//       if (!room) {
+//       if (!trip) {
 //         // If no room matches the criteria, return a 404 Not Found response
-//         res.status(404).send("Room not found");
+//         res.status(404).send("Trip not found");
 //         return;
 //       }
 
 //       // Respond with the room data
-//       res.json(room);
+//       res.json(trip);
 //     }
 //   );
 // };

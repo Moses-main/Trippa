@@ -1,11 +1,10 @@
 // routes.js
 const express = require("express");
 const router = express.Router();
-const roomsController = require("../controllers/guidesController");
+const guideController = require("../controllers/guidesController");
 // const authMiddleware = require("../middlewares/authMiddleware");
 
 // Authentication routes
-router.get("/", roomsController.getAllRooms);
-// router.get("/:criteria", roomsController.getRoom);
-
+router.get("/", guideController.allGuides);
+// router.get("/:criteria", tripsController.getTrip);
 module.exports = router;
