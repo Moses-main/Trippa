@@ -1,4 +1,4 @@
-const actSpot = require("../models/ActivitySpot");
+const actSpot = require("../../models/ActivitySpot");
 
 // Fetch all activity spot
 exports.getAllActivitySpot = async (req, res) => {

@@ -1,4 +1,4 @@
-const Restaurant = require("../models/Restaurant");
+const Restaurant = require("../../models/Restaurant");
 
 // Fetch all hotesl
 exports.getAllRestaurants = async (req, res) => {
