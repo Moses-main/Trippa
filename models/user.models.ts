@@ -26,7 +26,10 @@ const userSchema = new Schema<UserDocument>({
         type: String,
         required: true,
         minlength: 6,
-    }
+    },
+    picture: { type: String },
+    recentTrips: { type: String },
+    bio: { type: String },
 }, { timestamps: true });
 
 // Pre-save hook to hash password
