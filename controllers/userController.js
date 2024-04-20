@@ -1,33 +1,99 @@
-// // userController.js
-// const User = require("../models/User");
+// userController.js
+//const User = require("../models/User");
+import User from '../models/User'
 
-// // Fetch all users
-// exports.getAllUsers = async (req, res) => {
-//   try {
-//     const users = await User.find();
-//     res.json(users);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
 
-// // Fetch single user by ID
-// exports.getUserById = async (req, res) => {
-//   const userId = req.params.id;
-//   try {
-//     const user = await User.findById(userId);
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-//     res.json(user);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+// Fetch all users
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
 
-// // Create a new user
+// Fetch single user by ID
+exports.getUserById = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// @desc     get user profile
+// @route    GET /api/users/profile
+// @access   Private
+exports.getUserProfile = async (req, res) => {
+    const user = await User.findById(req.user._id);
+    try {
+        if (user) {
+            res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                picture: user.picture,
+                recentTrips: user.recentTrips,
+                bio: user.bio
+            });
+        } else {
+            res.status(404);
+            throw new Error("User not found");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+// @desc     Update user profile
+// @route    PUT /api/users/profile
+// @access   Private
+
+exports.updateUserProfile = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.user._id,
+
+            {
+                name: req.body.name,
+                email: req.body.email,
+                picture: req.body.picture,
+                recentTrips: req.body.recentTrips,
+                bio: req.body.bio
+
+            }, {
+            new: true,
+            runValidators: true
+        });
+        if (!user) {
+            res.status(404)
+            throw new Error("User not found");
+        }
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            picture: user.picture,
+            recentTrips: user.recentTrips,
+            bio: user.bio
+
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+// Create a new user
 // exports.createUser = async (req, res) => {
 //   const { email, password } = req.body;
 //   try {
@@ -43,7 +109,7 @@
 //   }
 // };
 
-// // Update a user
+// Update a user
 // exports.updateUser = async (req, res) => {
 //   const userId = req.params.id;
 //   const { email, password } = req.body;
@@ -62,18 +128,18 @@
 //   }
 // };
 
-// // Delete a user
-// exports.deleteUser = async (req, res) => {
-//   const userId = req.params.id;
-//   try {
-//     const user = await User.findById(userId);
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-//     await user.remove();
-//     res.json({ message: "User deleted successfully" });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+// Delete a user
+exports.deleteUser = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        await user.deleteOne();
+        res.json({ message: "User deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};

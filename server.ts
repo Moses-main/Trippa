@@ -6,6 +6,7 @@ import router from "./routes/routes";
 import { Db } from "mongodb";
 import { UserService } from "./services/user.services";
 import { TokenService } from "./services/token_request.services";
+import userRouter from './routes/userRoutes'
 
 let db: Db;
 let userService: UserService;
@@ -27,8 +28,8 @@ class Server {
   private setupRoutes() {
     // Use api/v1/ prefix for all routes
     this.app.use("/api/v1/", router);
+    this.app.use("/api/users", userRouter);
   }
-
   public async start() {
     try {
       await connectDB();
