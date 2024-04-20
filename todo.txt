@@ -1,0 +1,5 @@
+done
+1. restaurants
+2. guides
+3. hotels
+4. activities
