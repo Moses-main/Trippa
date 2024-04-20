@@ -1,8 +1,5 @@
 done
 1. restaurants
 2. guides
-
-todo
-
-hotels
-activities
+3. hotels
+4. activities

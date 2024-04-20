@@ -9,7 +9,7 @@ const routes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const hotelRoutes = require("./routes/hotelRoutes");
 const guideRoutes = require("./routes/guidesRoutes");
-const activitySpotRoutes = require("./routes/actSpotRoutes");
+const activitySpotRoutes = require("./routes/activityRoute");
 const restaurantRoutes = require("./routes/restaurantRoute");
 // const roomsRoutes = require("./routes/roomsRoute");
 
@@ -22,10 +22,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", routes);
 app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelRoutes);
-app.use("/api/act-spot", activitySpotRoutes);
+app.use("/api/activities", activitySpotRoutes);
 app.use("/api/restaurant", restaurantRoutes);
 app.use("/api/guides", guideRoutes);
-// app.use("/api/rooms", roomsRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
