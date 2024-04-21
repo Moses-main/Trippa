@@ -1,6 +1,6 @@
 // userController.js
 //const User = require("../models/User");
-import User from '../models/User'
+const { User } = require('../models/User')
 
 
 // Fetch all users
