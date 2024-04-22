@@ -1,4 +1,3 @@
-// routes/userRoutes.js
 const express = require("express");
 const router = express.Router();
 const { getUserProfile, updateUserProfile, getAllUsers, getUserById, deleteUser } = require("../controllers/userController");
