@@ -4,7 +4,7 @@ import User from '../models/User'
 
 
 // Fetch all users
-exports.getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
         res.json(users);
@@ -15,7 +15,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 // Fetch single user by ID
-exports.getUserById = async (req, res) => {
+const getUserById = async (req, res) => {
     const userId = req.params.id;
     try {
         const user = await User.findById(userId);
@@ -32,7 +32,7 @@ exports.getUserById = async (req, res) => {
 // @desc     get user profile
 // @route    GET /api/users/profile
 // @access   Private
-exports.getUserProfile = async (req, res) => {
+const getUserProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
     try {
         if (user) {
@@ -58,7 +58,7 @@ exports.getUserProfile = async (req, res) => {
 // @route    PUT /api/users/profile
 // @access   Private
 
-exports.updateUserProfile = async (req, res) => {
+const updateUserProfile = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.user._id,
 
@@ -129,7 +129,7 @@ exports.updateUserProfile = async (req, res) => {
 // };
 
 // Delete a user
-exports.deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     const userId = req.params.id;
     try {
         const user = await User.findById(userId);
@@ -142,4 +142,12 @@ exports.deleteUser = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: "Server error" });
     }
+};
+
+module.exports = {
+    getAllUsers,
+    getUserById,
+    getUserProfile,
+    updateUserProfile,
+    deleteUser
 };
