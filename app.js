@@ -12,7 +12,6 @@ const hotelRoutes = require("./routes/hotelRoutes");
 const guideRoutes = require("./routes/guidesRoutes");
 const activitySpotRoutes = require("./routes/activityRoute");
 const restaurantRoutes = require("./routes/restaurantRoute");
-// const roomsRoutes = require("./routes/roomsRoute");
 
 require("dotenv").config();
 
@@ -36,6 +35,11 @@ const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
 mongoose.connect(LOCAL_CONN, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
+});
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
 });
 
 const db = mongoose.connection;
