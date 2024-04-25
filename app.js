@@ -27,12 +27,11 @@ app.use("/api/activities", activitySpotRoutes);
 app.use("/api/restaurant", restaurantRoutes);
 app.use("/api/guides", guideRoutes);
 
-
 const MONGO_URI = process.env.MONGO_URI;
-const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
+// const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
 
 // Database connection
-mongoose.connect(LOCAL_CONN, {
+mongoose.connect(MONGO_URI, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
 });
