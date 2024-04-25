@@ -29,11 +29,15 @@ exports.getUserById = async (req, res) => {
 
 // Create a new user
 exports.createUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name, picture, recentTrips, bio } = req.body;
   try {
     const newUser = new User({
       email,
       password,
+      name,
+      picture,
+      recentTrips,
+      bio
     });
     await newUser.save();
     res.status(201).json(newUser);
@@ -72,6 +76,70 @@ exports.deleteUser = async (req, res) => {
     }
     await user.deleteOne();
     res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+// @desc     get user profile
+// @route    GET /api/users/profile
+// @access   Private
+exports.getUserProfile = async (req, res) => {
+  const user = await User.findById(req.user._id);
+  try {
+    if (user) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        picture: user.picture,
+        recentTrips: user.recentTrips,
+        bio: user.bio
+      });
+    } else {
+      res.status(404);
+      throw new Error("User not found");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// @desc     Update user profile
+// @route    PUT /api/users/profile
+// @access   Private
+
+exports.updateUserProfile = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.user._id,
+
+      {
+        name: req.body.name,
+        email: req.body.email,
+        picture: req.body.picture,
+        recentTrips: req.body.recentTrips,
+        bio: req.body.bio
+
+      }, {
+      new: true,
+      runValidators: true
+    });
+    if (!user) {
+      res.status(404)
+      throw new Error("User not found");
+    }
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      picture: user.picture,
+      recentTrips: user.recentTrips,
+      bio: user.bio
+
+    })
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

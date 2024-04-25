@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3500;
 
@@ -19,12 +20,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Mounting route
+app.use(cors());
 app.use("/api", routes);
 app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/activities", activitySpotRoutes);
 app.use("/api/restaurant", restaurantRoutes);
 app.use("/api/guides", guideRoutes);
+
 
 const MONGO_URI = process.env.MONGO_URI;
 const LOCAL_CONN = process.env.LOCAL_MONGO_URI;

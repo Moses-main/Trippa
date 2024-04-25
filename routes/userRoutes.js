@@ -4,6 +4,7 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 
 // CRUD endpoints for users
+router.route("/profile").get(userController.getUserProfile).put(userController.updateUserProfile)
 router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getUserById);
 router.put("/:id", userController.updateUser);
