@@ -12,7 +12,6 @@ const hotelRoutes = require("./routes/hotelRoutes");
 const guideRoutes = require("./routes/guidesRoutes");
 const activitySpotRoutes = require("./routes/activityRoute");
 const restaurantRoutes = require("./routes/restaurantRoute");
-// const roomsRoutes = require("./routes/roomsRoute");
 
 require("dotenv").config();
 
