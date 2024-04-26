@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
 
 // Register user
 exports.register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, firstname, lastname } = req.body;
 
   try {
     // Check if user already exists
@@ -49,6 +49,8 @@ exports.register = async (req, res) => {
     const newUser = new User({
       email,
       password: hashedPassword,
+      firstname,
+      lastname,
     });
 
     // Save user to database

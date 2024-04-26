@@ -29,11 +29,13 @@ exports.getUserById = async (req, res) => {
 
 // Create a new user
 exports.createUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, firstname, lastname } = req.body;
   try {
     const newUser = new User({
       email,
       password,
+      firstname,
+      lastname
     });
     await newUser.save();
     res.status(201).json(newUser);
@@ -46,7 +48,7 @@ exports.createUser = async (req, res) => {
 // Update a user
 exports.updateUser = async (req, res) => {
   const userId = req.params.id;
-  const { email, password } = req.body;
+  const { email, password, firstname, lastname } = req.body;
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -54,6 +56,8 @@ exports.updateUser = async (req, res) => {
     }
     user.email = email;
     user.password = password;
+    user.firstname = firstname;
+    user.lastname = lastname;
     await user.save();
     res.json(user);
   } catch (error) {
@@ -89,6 +93,8 @@ exports.getUserProfile = async (req, res) => {
       res.json({
         _id: user._id,
         email: user.email,
+        firstname: user.firstname,
+        lastname: user.lastname
       });
     } else {
       res.status(404);
@@ -110,6 +116,8 @@ exports.updateUserProfile = async (req, res) => {
 
       {
         email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
 
       }, {
       new: true,
@@ -122,6 +130,8 @@ exports.updateUserProfile = async (req, res) => {
     res.json({
       _id: user._id,
       email: user.email,
+      firstname: user.firstname,
+      lastname: user.lastname,
 
     })
   } catch (error) {
