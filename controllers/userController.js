@@ -29,15 +29,13 @@ exports.getUserById = async (req, res) => {
 
 // Create a new user
 exports.createUser = async (req, res) => {
-  const { email, password, name, picture, recentTrips, bio } = req.body;
+  const { email, password, firstname, lastname } = req.body;
   try {
     const newUser = new User({
       email,
       password,
-      name,
-      picture,
-      recentTrips,
-      bio
+      firstname,
+      lastname
     });
     await newUser.save();
     res.status(201).json(newUser);
@@ -50,7 +48,7 @@ exports.createUser = async (req, res) => {
 // Update a user
 exports.updateUser = async (req, res) => {
   const userId = req.params.id;
-  const { email, password } = req.body;
+  const { email, password, firstname, lastname } = req.body;
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -58,6 +56,8 @@ exports.updateUser = async (req, res) => {
     }
     user.email = email;
     user.password = password;
+    user.firstname = firstname;
+    user.lastname = lastname;
     await user.save();
     res.json(user);
   } catch (error) {
@@ -92,11 +92,9 @@ exports.getUserProfile = async (req, res) => {
     if (user) {
       res.json({
         _id: user._id,
-        name: user.name,
         email: user.email,
-        picture: user.picture,
-        recentTrips: user.recentTrips,
-        bio: user.bio
+        firstname: user.firstname,
+        lastname: user.lastname
       });
     } else {
       res.status(404);
@@ -117,11 +115,9 @@ exports.updateUserProfile = async (req, res) => {
     const user = await User.findByIdAndUpdate(req.user._id,
 
       {
-        name: req.body.name,
         email: req.body.email,
-        picture: req.body.picture,
-        recentTrips: req.body.recentTrips,
-        bio: req.body.bio
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
 
       }, {
       new: true,
@@ -133,11 +129,9 @@ exports.updateUserProfile = async (req, res) => {
     }
     res.json({
       _id: user._id,
-      name: user.name,
       email: user.email,
-      picture: user.picture,
-      recentTrips: user.recentTrips,
-      bio: user.bio
+      firstname: user.firstname,
+      lastname: user.lastname,
 
     })
   } catch (error) {

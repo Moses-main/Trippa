@@ -27,24 +27,32 @@ app.use("/api/activities", activitySpotRoutes);
 app.use("/api/restaurant", restaurantRoutes);
 app.use("/api/guides", guideRoutes);
 
-const MONGO_URI = process.env.MONGO_URI;
+
+// const MONGO_URI = process.env.MONGO_URI;
 // const LOCAL_CONN = process.env.LOCAL_MONGO_URI;
 
+
+// Database
+mongoose.set('strictQuery', false);
+mongoose
+  .connect(process.env.MONGO_URI, {
+  })
+  .then(() => {
+    console.log('database connected!');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 // Database connection
+// mongoose.connect(MONGO_UR, {
+//   // useNewUrlParser: true,
+//   //
+//   //useUnifiedTopology: true,
+// });
 
-mongoose.connect(MONGO_URI, {
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
-});
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-});
-
-const db = mongoose.connection;
-if (db) console.log("Database connection successful");
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+// const db = mongoose.connection;
+// if (db) console.log("Database connection successful");
+// db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // Define route for the root endpoint
 app.get("/", (req, res) => {
